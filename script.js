@@ -9,29 +9,7 @@ let teamData = [
 // ========== СИСТЕМА УВЕДОМЛЕНИЙ СВЕРХУ ==========
 let notifications = JSON.parse(localStorage.getItem('union_notifications')) || [];
 
-// ========== ФИКС ФОНА ==========
-(function fixBackground() {
-    const bg = document.getElementById('moving-bg');
-    if (!bg) {
-        console.error('❌ #moving-bg не найден');
-        return;
-    }
-    
-    // Убираем все стили и ставим свои
-    bg.style.cssText = `
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        background: url('https://s.fotora.ru/be0edaffa720ff03.jpeg
-') center/cover no-repeat !important;
-        z-index: -2 !important;
-        pointer-events: none !important;
-    `;
-    
-    console.log('✅ Фон принудительно установлен');
-})();
+
 
 function saveNotificationsLocal() {
     localStorage.setItem('union_notifications', JSON.stringify(notifications));
@@ -2894,6 +2872,11 @@ async function onContinue() {
     welcomeContainer.classList.add('hidden');
     mainDashboard.style.display = 'block';
 
+    // Показываем кнопки кураторов
+setTimeout(function() {
+    updateUIBasedOnRole();
+}, 500);
+
     // Скрываем вкладки для гостя после входа
 if (currentUser === 'Гость') {
     document.querySelector('[data-tab="add_event"]').style.display = 'none';
@@ -2961,6 +2944,11 @@ async function doLogin() {
             
             currentUser = data.user;
             isEditor = data.isEditor;
+
+            // Показываем кнопки кураторов
+                setTimeout(function() {
+                    updateUIBasedOnRole();
+                }, 500);
             
             sendAuditLog('LOGIN', {}).catch(err => console.error('Ошибка отправки лога входа:', err));
             
@@ -2995,6 +2983,12 @@ async function onContinue() {
     sessionStorage.setItem('continued', 'true');
     welcomeContainer.classList.add('hidden');
     mainDashboard.style.display = 'block';
+
+    // Показываем кнопки кураторов
+setTimeout(function() {
+    updateUIBasedOnRole();
+}, 500);
+
     renderEventsTable();
     
     showGlobalLoading();
@@ -3260,7 +3254,7 @@ function applyBrightness(value) {
     const percent = value / 100;
     const bg = document.getElementById('moving-bg');
     if (bg) {
-        bg.style.filter = `brightness(${percent}) blur(8px) saturate(0) grayscale(1)`;
+        bg.style.filter = `brightness(${percent})`; 
     }
     let overlay = document.getElementById('brightnessOverlay');
     if (!overlay) {
@@ -3288,39 +3282,185 @@ function applyBrightness(value) {
     if (brightnessValue) brightnessValue.textContent = value + '%';
 }
 
-function applyBackground(bgId) {
-    const bgUrls = {
-        1: 'https://s.fotora.ru/53ed6c1638eeb0c3.png',
-        2: 'https://s.fotora.ru/428d4435cf52dbd9.png',
-        3: 'https://s.fotora.ru/685ca425d754b424.png',
-        4: 'https://s.fotora.ru/a95e1a74f4e1a6d6.png',
-        5: 'https://s.fotora.ru/96a91f558437979e.png',
-        6: 'https://s.fotora.ru/5583442297c8d4c5.png',
-        7: 'https://s.fotora.ru/536ddcc63cff044b.png',
-        8: 'https://s.fotora.ru/00a6f25b03700d71.png',
-        9: 'https://s.fotora.ru/887ddbf1ff2f6a2c.png',
-        10: 'https://s.fotora.ru/dc5ad1b288acf115.png',
-        11: 'https://s.fotora.ru/7fc75b13766b24d9.png',
-        12: 'https://s.fotora.ru/cad6e89b6485693f.png'
+// ========== СМЕНА ФОНА (ФИНАЛЬНАЯ ВЕРСИЯ) ==========
+// ========== СМЕНА ФОНА (ЛЕНИВАЯ ЗАГРУЗКА) ==========
+(function() {
+    var bgUrls = {
+        '1': 'https://s.fotora.ru/53ed6c1638eeb0c3.png',
+        '2': 'https://s.fotora.ru/428d4435cf52dbd9.png',
+        '3': 'https://s.fotora.ru/685ca425d754b424.png',
+        '4': 'https://s.fotora.ru/a95e1a74f4e1a6d6.png',
+        '5': 'https://s.fotora.ru/96a91f558437979e.png',
+        '6': 'https://s.fotora.ru/5583442297c8d4c5.png',
+        '7': 'https://s.fotora.ru/536ddcc63cff044b.png',
+        '8': 'https://s.fotora.ru/00a6f25b03700d71.png',
+        '9': 'https://s.fotora.ru/887ddbf1ff2f6a2c.png',
+        '10': 'https://s.fotora.ru/dc5ad1b288acf115.png',
+        '11': 'https://s.fotora.ru/7fc75b13766b24d9.png',
+        '12': 'https://s.fotora.ru/cad6e89b6485693f.png'
     };
     
-    const bgElement = document.getElementById('moving-bg');
-    if (bgElement && bgUrls[bgId]) {
-        // Принудительно меняем фон
-        bgElement.style.backgroundImage = `url('${bgUrls[bgId]}')`;
-        bgElement.style.backgroundSize = "cover";
-        bgElement.style.backgroundPosition = "center";
-        bgElement.style.backgroundRepeat = "no-repeat";
+    var loadedBg = {}; // кэш загруженных фонов
+    
+    function setBg(bgId) {
+        var bgElement = document.getElementById('moving-bg');
+        if (!bgElement || !bgUrls[bgId]) return;
         
-        // Сохраняем в localStorage
+        bgElement.style.cssText = 
+            "background-image: url('" + bgUrls[bgId] + "') !important;" +
+            "background-size: cover !important;" +
+            "background-position: center !important;" +
+            "background-repeat: no-repeat !important;" +
+            "position: fixed !important;" +
+            "top: -10px !important;" +
+            "left: -10px !important;" +
+            "width: calc(100% + 20px) !important;" +
+            "height: calc(100% + 20px) !important;" +
+            "z-index: -2 !important;";
+        
         localStorage.setItem('selectedBg', bgId);
-        
-        console.log(`✅ Фон изменён на ${bgId}`);
-        showNotif(`🖼️ Фон изменён`, false, 'success');
-    } else {
-        console.error('Фон не найден или ID не существует');
     }
+    
+    // Загрузка одного фона в превью
+    function loadPreview(bgId) {
+        var opt = document.querySelector('.bg-option[data-bg="' + bgId + '"]');
+        if (!opt || loadedBg[bgId]) return;
+        
+        var img = document.createElement('img');
+        img.src = bgUrls[bgId];
+        img.alt = 'Фон ' + bgId;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.display = 'block';
+        img.onload = function() {
+            opt.innerHTML = '';
+            opt.appendChild(img);
+            opt.classList.add('loaded');
+            loadedBg[bgId] = true;
+        };
+        img.onerror = function() {
+            opt.querySelector('.bg-placeholder').textContent = 'Ошибка';
+        };
+        opt.appendChild(img);
+    }
+    
+    // Загрузка всех фонов
+    function loadAllPreviews() {
+        var btn = document.getElementById('loadAllBgBtn');
+        if (btn) {
+            btn.textContent = '⏳ Загрузка...';
+            btn.disabled = true;
+        }
+        
+        var ids = Object.keys(bgUrls);
+        var loaded = 0;
+        
+        ids.forEach(function(id, index) {
+            setTimeout(function() {
+                loadPreview(id);
+                loaded++;
+                if (btn && loaded === ids.length) {
+                    btn.textContent = '✅ Все фоны загружены';
+                    setTimeout(function() {
+                        btn.textContent = '📥 Загрузить все фоны';
+                        btn.disabled = false;
+                    }, 2000);
+                }
+            }, index * 100);
+        });
+
+        // Скрываем кнопку на фоне
+var loadBtnOnBg = document.getElementById('loadBgOnBg');
+if (loadBtnOnBg) {
+    loadBtnOnBg.style.display = 'none';
 }
+    }
+    
+    function init() {
+    var bgElement = document.getElementById('moving-bg');
+    if (!bgElement) {
+        setTimeout(init, 100);
+        return;
+    }
+    
+    var savedBg = localStorage.getItem('selectedBg') || '6';
+    
+    // Загружаем только текущий фон
+    setBg(savedBg);
+    loadPreview(savedBg);
+    
+    // Кнопка загрузки всех фонов (общая)
+    var loadBtn = document.getElementById('loadAllBgBtn');
+    if (loadBtn) {
+        loadBtn.addEventListener('click', loadAllPreviews);
+    }
+    
+    // Обработчики для каждой кнопки "Загрузить" внутри превью
+    document.querySelectorAll('.bg-load-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // чтобы не сработал клик по фону
+            var bgOption = this.closest('.bg-option');
+            var bgId = bgOption.getAttribute('data-bg');
+            
+            // Загружаем этот фон
+            loadPreview(bgId);
+            
+            // Применяем его
+            setBg(bgId);
+            
+            // Подсветка
+            document.querySelectorAll('.bg-option').forEach(function(o) {
+                o.classList.remove('selected');
+                o.style.border = '2px solid transparent';
+            });
+            bgOption.classList.add('selected');
+            bgOption.style.border = '2px solid #ffaa44';
+            
+            showNotif('🖼️ Фон ' + bgId + ' загружен и применён!');
+        });
+    });
+    
+    // Клик по самому превью (если уже загружен) — просто применяем
+    document.querySelectorAll('.bg-option').forEach(function(opt) {
+        opt.addEventListener('click', function(e) {
+            // Если клик был по кнопке — не обрабатываем
+            if (e.target.closest('.bg-load-btn')) return;
+            
+            var bgId = this.getAttribute('data-bg');
+            
+            if (!loadedBg[bgId]) {
+                loadPreview(bgId);
+            }
+            
+            setBg(bgId);
+            
+            document.querySelectorAll('.bg-option').forEach(function(o) {
+                o.classList.remove('selected');
+                o.style.border = '2px solid transparent';
+            });
+            this.classList.add('selected');
+            this.style.border = '2px solid #ffaa44';
+            
+            showNotif('🖼️ Фон изменён!');
+        });
+    });
+    
+    // Подсвечиваем текущий
+    document.querySelectorAll('.bg-option').forEach(function(opt) {
+        if (opt.getAttribute('data-bg') === savedBg) {
+            opt.classList.add('selected');
+            opt.style.border = '2px solid #ffaa44';
+        }
+    });
+}
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
 
 function openSettings() {
     updateStatsDisplay();
@@ -3385,7 +3525,7 @@ if (settingsModal) {
     });
 }
 openEditEventModal
-loadSavedSettings();
+
 
 const salaryBtn = document.getElementById('salaryBtn');
 const salaryModal = document.getElementById('salaryModal');
@@ -3559,12 +3699,6 @@ async function forceUpdateAllStatuses() {
     renderEventsTable();
     console.log('✅ Статусы обновлены');
 }
-
-// Обновляем статусы при загрузке страницы
-window.addEventListener('load', async () => {
-    console.log('📢 Страница загружена, обновляем статусы...');
-    await forceUpdateAllStatuses();
-});
 
 // Обновляем статусы при каждом обновлении ивентов
 const originalRefreshEventsData = refreshEventsData;
@@ -4169,9 +4303,6 @@ function checkEventStatuses() {
 showImportButton();
 initImportButton();
 
-setInterval(() => {
-    refreshStatusesFromSheet();
-}, 180000);
     
 function openEditEventModal(eventId) {
     const event = eventsData.find(ev => ev.id === eventId);
@@ -4682,7 +4813,14 @@ window.logout = function() {
     
 
     const PARTICLE_COUNT = 120;        
-    const COLORS = ['#ff66cc', '#c9a0ff', '#ff99ff', '#ff66aa', '#d4b8ff', '#ff88dd'];
+    const COLORS = [
+    'rgba(255, 170, 68, 0.4)',   // оранжевый
+    'rgba(255, 200, 130, 0.35)',  // светлый
+    'rgba(200, 130, 50, 0.3)',    // тёмный
+    'rgba(255, 150, 30, 0.35)',   // яркий
+    'rgba(255, 185, 100, 0.3)',   // средний
+    'rgba(220, 140, 60, 0.3)'     // приглушённый
+];
     const MOUSE_RADIUS = 100;          
     
     let particles = [];
@@ -5400,93 +5538,6 @@ function showBugReportMessage() {
     }
 }
 
-// ========== ПРИНУДИТЕЛЬНАЯ УСТАНОВКА ФОНА ==========
-setTimeout(function() {
-    const bgElement = document.getElementById('moving-bg');
-    if (bgElement) {
-        bgElement.style.backgroundImage = "url('https://i.imgur.com/xp9Z6zO.jpeg')";
-        bgElement.style.backgroundSize = "cover";
-        bgElement.style.backgroundPosition = "center";
-        bgElement.style.backgroundRepeat = "no-repeat";
-        bgElement.style.filter = "blur(0px)";
-        bgElement.style.opacity = "1";
-        console.log('✅ Фон установлен принудительно');
-    }
-    
-    const overlayElement = document.getElementById('bg-overlay');
-    if (overlayElement) {
-        overlayElement.style.display = "none";
-    }
-    
-    const dashboardElement = document.getElementById('mainDashboard');
-    if (dashboardElement) {
-        dashboardElement.style.background = "transparent";
-    }
-}, 100);
-
-// ========== ФИКС ФОНА (РАБОЧАЯ ВЕРСИЯ) ==========
-(function fixBackground() {
-    setTimeout(function() {
-        const movingBg = document.getElementById('moving-bg');
-        if (movingBg) {
-            movingBg.style.backgroundImage = "url('https://i.imgur.com/xp9Z6zO.jpeg')";
-            movingBg.style.backgroundSize = "cover";
-            movingBg.style.backgroundPosition = "center";
-            movingBg.style.backgroundRepeat = "no-repeat";
-            movingBg.style.filter = "blur(0px)";
-            movingBg.style.opacity = "1";
-            console.log('✅ ФОН УСТАНОВЛЕН');
-        } else {
-            console.log('❌ #moving-bg не найден');
-        }
-        
-        const bgOverlay = document.getElementById('bg-overlay');
-        if (bgOverlay) {
-            bgOverlay.style.display = "none";
-        }
-        
-        const dashboardEl = document.getElementById('mainDashboard');
-        if (dashboardEl) {
-            dashboardEl.style.background = "transparent";
-        }
-    }, 100);
-})();
-
-// ========== АВТОМАТИЧЕСКАЯ УСТАНОВКА ФОНА ==========
-(function autoFixBackground() {
-    // Ждём загрузки DOM
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyBackgroundFix);
-    } else {
-        applyBackgroundFix();
-    }
-    
-    function applyBackgroundFix() {
-        setTimeout(function() {
-            const movingBg = document.getElementById('moving-bg');
-            if (movingBg) {
-                movingBg.style.backgroundImage = "url('https://i.imgur.com/xp9Z6zO.jpeg')";
-                movingBg.style.backgroundSize = "cover";
-                movingBg.style.backgroundPosition = "center";
-                movingBg.style.backgroundRepeat = "no-repeat";
-                movingBg.style.filter = "blur(0px)";
-            }
-            
-            const bgOverlay = document.getElementById('bg-overlay');
-            if (bgOverlay) {
-                bgOverlay.style.display = "none";
-            }
-            
-            const dashboard = document.getElementById('mainDashboard');
-            if (dashboard) {
-                dashboard.style.background = "transparent";
-            }
-            
-            console.log('✅ Фон автоматически установлен');
-        }, 50);
-    }
-})();
-
 // ========== ФИКС ЧЁРНОГО ФОНА ПОСЛЕ ВХОДА ==========
 (function fixBlackBackground() {
     // Функция, которая возвращает прозрачный фон
@@ -5655,70 +5706,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ========== СМЕНА ФОНА ==========
+// ========== ИСКРЫ ПРИ НАЖАТИИ НА ПОЛОСУ ==========
 (function() {
-    var bgUrls = {
-        '1': 'https://i.imgur.com/MpiTIPp.jpeg',
-        '2': 'https://i.imgur.com/5xGFarZ.png',
-        '3': 'https://i.imgur.com/5251qqI.jpeg',
-        '4': 'https://i.imgur.com/HN4JFFC.png',
-        '5': 'https://i.imgur.com/dPp05Jv.png',
-        '6': 'https://i.imgur.com/xp9Z6zO.jpeg',
-        '7': 'https://i.imgur.com/HN4JFFC.png',
-        '8': 'https://i.imgur.com/dPp05Jv.png',
-        '9': 'https://i.imgur.com/xp9Z6zO.jpeg',
-        '10': 'https://i.imgur.com/xp9Z6zO.jpeg'
-    };
+    var bar = document.getElementById('sparkBar');
+    if (!bar) return;
     
-    // Навешиваем клики на все варианты фона
-    var bgOptions = document.querySelectorAll('.bg-option');
-    
-    bgOptions.forEach(function(option) {
-        option.addEventListener('click', function() {
-            var bgId = this.getAttribute('data-bg');
-            var bgElement = document.getElementById('moving-bg');
-            
-            if (!bgElement || !bgUrls[bgId]) return;
-            
-            // Меняем фон
-            bgElement.style.backgroundImage = "url('" + bgUrls[bgId] + "')";
-            bgElement.style.backgroundSize = 'cover';
-            bgElement.style.backgroundPosition = 'center';
-            bgElement.style.backgroundRepeat = 'no-repeat';
-            
-            // Сохраняем выбор
-            localStorage.setItem('selectedBg', bgId);
-            
-            // Обновляем выделение
-            bgOptions.forEach(function(opt) {
-                opt.classList.remove('selected');
-                opt.style.border = '2px solid transparent';
-            });
-            this.classList.add('selected');
-            this.style.border = '2px solid #ffaa44';
-            
-            // Уведомление
-            var name = this.querySelector('span').textContent;
-            showNotif('🖼️ Фон изменён на: ' + name);
-        });
-    });
-    
-    // Загружаем сохранённый фон при старте
-    var savedBg = localStorage.getItem('selectedBg');
-    if (savedBg && bgUrls[savedBg]) {
-        var bgElement = document.getElementById('moving-bg');
-        if (bgElement) {
-            bgElement.style.backgroundImage = "url('" + bgUrls[savedBg] + "')";
-            bgElement.style.backgroundSize = 'cover';
-            bgElement.style.backgroundPosition = 'center';
-        }
+    bar.addEventListener('click', function(e) {
+        var sparkCount = 15; // количество искр
         
-        // Подсвечиваем выбранный
-        bgOptions.forEach(function(opt) {
-            if (opt.getAttribute('data-bg') === savedBg) {
-                opt.classList.add('selected');
-                opt.style.border = '2px solid #ffaa44';
-            }
-        });
-    }
+        for (var i = 0; i < sparkCount; i++) {
+            var spark = document.createElement('div');
+            spark.className = 'spark';
+            
+            var size = Math.random() * 6 + 3;
+            var colors = ['#ff6600', '#ffaa44', '#ffcc88', '#ff8800', '#ffdd99', '#fff'];
+            var color = colors[Math.floor(Math.random() * colors.length)];
+            
+            spark.style.cssText = 
+                'left: ' + e.clientX + 'px;' +
+                'top: ' + e.clientY + 'px;' +
+                'width: ' + size + 'px;' +
+                'height: ' + size + 'px;' +
+                'background: ' + color + ';' +
+                'border-radius: 50%;' +
+                '--sx: ' + ((Math.random() - 0.5) * 200) + 'px;' +
+                '--sy: ' + (-Math.random() * 250 - 50) + 'px;';
+            
+            document.body.appendChild(spark);
+            
+            setTimeout(function() {
+                spark.remove();
+            }, 800);
+        }
+    });
 })();
