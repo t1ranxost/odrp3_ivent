@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>UnionTeam | Ивент-отдел</title> 
+    <link rel="icon" type="image/jpeg" href="https://thumbnail.imgbin.com/1/15/8/imgbin-umbrella-corps-umbrella-corporation-logo-corporation-s-eaceKxjk51KWugDKLhThQLwEt_t.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <defs>
+
+            <symbol id="ic-eagle" viewBox="0 0 24 24">
+                <path d="M21 8c-1.5 0-2.9.6-3.9 1.6L12 5 6.9 9.6A5.5 5.5 0 0 0 3 8H1l3 4-3 4h2a5.5 5.5 0 0 0 3.9-1.6L9 16l-2 5h2l3-4 3 4h2l-2-5 1.1-1.6A5.5 5.5 0 0 0 20 16h2l-3-4 3-4h-1Z"/>
+            </symbol>
+
+            <symbol id="ic-wave" viewBox="0 0 24 24">
+                <path d="M7.5 4a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 7.5 4ZM12 2a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 12 2Zm4.5 2a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 16.5 4ZM5.25 8.5A2.75 2.75 0 0 1 8 5.75h.25V8A3.25 3.25 0 0 0 11.5 11h1A3.25 3.25 0 0 0 16 8V5.75H16.25A2.75 2.75 0 0 1 19 8.5v1a8.75 8.75 0 0 1-8.75 8.75H8.5A6.25 6.25 0 0 1 2.25 12v-1A2.75 2.75 0 0 1 5 8.25l.25.25Z"/>
+            </symbol>
+
+            <symbol id="ic-table" viewBox="0 0 24 24">
+                <path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm1 5v3h5V8H4Zm7 0v3h5V8h-5Zm7 0v3h1V8h-1Zm-14 5v3h5v-3H4Zm7 0v3h5v-3h-5Zm7 0v3h1v-3h-1Zm-14 5v1h5v-1H4Zm7 0v1h5v-1h-5Zm7 0v1h1v-1h-1Z"/>
+            </symbol>
+
+            <symbol id="ic-team" viewBox="0 0 24 24">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3Zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3Zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5Zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5Z"/>
+            </symbol>
+
+            <symbol id="ic-plus" viewBox="0 0 24 24">
+                <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 0 1 0 2h-6v6a1 1 0 0 1-2 0v-6H5a1 1 0 0 1 0-2h6V5a1 1 0 0 1 1-1Z"/>
+            </symbol>
+
+            <symbol id="ic-chart" viewBox="0 0 24 24">
+                <path d="M3 3v18h18v-2H5V3H3Zm14 9-4-4-4 4-2-2-1.4 1.4L9 14.8l4-4 4 4 4-4-1.4-1.4L17 12Z"/>
+            </symbol>
+
+            <symbol id="ic-book" viewBox="0 0 24 24">
+                <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm0 18H6V4h2v8l2.5-1.5L13 12V4h5v16Z"/>
+            </symbol>
+
+            <symbol id="ic-box" viewBox="0 0 24 24">
+                <path d="m20.7 7.5-8-4.5a1.5 1.5 0 0 0-1.4 0l-8 4.5A1.5 1.5 0 0 0 2.5 9v6a1.5 1.5 0 0 0 .8 1.3l8 4.5a1.5 1.5 0 0 0 1.4 0l8-4.5a1.5 1.5 0 0 0 .8-1.3V9a1.5 1.5 0 0 0-.8-1.5ZM12 4.5 18.5 8 12 11.5 5.5 8 12 4.5ZM4.5 9.7l7 3.9v7l-7-3.9v-7Zm9 10.9v-7l7-3.9v7l-7 3.9Z"/>
+            </symbol>
+
+            <symbol id="ic-sun" viewBox="0 0 24 24">
+                <path d="M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7Zm0-5a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1Zm0 16a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1Zm8-9a1 1 0 0 1 0 2h-1a1 1 0 0 1 0-2h1ZM5 12a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1Zm11.95-5.364a1 1 0 0 1 0 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0ZM7.757 16.95a1 1 0 0 1 0 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0Zm9.9 1.414a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 0 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414ZM7.05 8.464a1 1 0 0 1-1.414 0l-.707-.707A1 1 0 0 1 6.343 6.343l.707.707a1 1 0 0 1 0 1.414Z"/>
+            </symbol>
+
+            <symbol id="ic-moon" viewBox="0 0 24 24">
+                <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1Z"/>
+            </symbol>
+
+            <symbol id="ic-logout" viewBox="0 0 24 24">
+                <path d="M5 3h7a1 1 0 0 1 0 2H5v14h7a1 1 0 0 1 0 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm10.3 4.3 3.4 3.4a1 1 0 0 1 0 1.4l-3.4 3.4a1 1 0 0 1-1.4-1.4L15.6 13H9a1 1 0 0 1 0-2h6.6l-1.7-1.7a1 1 0 0 1 1.4-1.4Z"/>
+            </symbol>
+
+            <symbol id="ic-close" viewBox="0 0 24 24">
+                <path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 0 0-1.4 1.4L10.6 12l-4.9 4.9a1 1 0 0 0 1.4 1.4L12 13.4l4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4Z"/>
+            </symbol>
+
+            <symbol id="ic-warn" viewBox="0 0 24 24">
+                <path d="M12 2 1 21h22L12 2Zm0 3.5 8.5 15.5h-17L12 5.5ZM11 10v4h2v-4h-2Zm0 6v2h2v-2h-2Z"/>
+            </symbol>
+
+            <symbol id="ic-crown" viewBox="0 0 24 24">
+                <path d="M12 3 8.5 8.5 3 6l2 12h14l2-12-5.5 2.5L12 3Z"/>
+            </symbol>
+
+            <symbol id="ic-star" viewBox="0 0 24 24">
+                <path d="M12 2l2.9 6.3 6.8.9-4.9 4.8 1.2 6.8L12 17.7l-6 3.1 1.2-6.8L2.3 9.2l6.8-.9L12 2Z"/>
+            </symbol>
+
+            <symbol id="ic-arrow-right" viewBox="0 0 24 24">
+                <path d="M12 4l-1.4 1.4L16.2 11H4v2h12.2l-5.6 5.6L12 20l8-8-8-8Z"/>
+            </symbol>
+
+            <symbol id="ic-arrow-left" viewBox="0 0 24 24">
+                <path d="M12 4l1.4 1.4L7.8 11H20v2H7.8l5.6 5.6L12 20l-8-8 8-8Z"/>
+            </symbol>
+
+            <symbol id="ic-chat" viewBox="0 0 24 24">
+                <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/>
+            </symbol>
+
+            <symbol id="ic-send" viewBox="0 0 24 24">
+                <path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/>
+            </symbol>
+
+            <symbol id="ic-info" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2Zm0 4a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 6Zm1.5 12h-3v-7h3v7Z"/>
+            </symbol>
+
+            <symbol id="ic-detail" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm4 18H6V4h7v5h5v11Z"/>
+            </symbol>
+
+            <symbol id="ic-clock" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7Z"/>
+            </symbol>
+
+        </defs>
+    </svg>
+</head>
+<body>
+<canvas id="particleCanvas"></canvas>
+
+<div id="moving-bg"></div>
+<div id="bg-overlay"></div>
+
+<div id="loginOverlay" class="modal-overlay">
+    <div class="login-modal">
+
+        <div style="text-align:center; margin-bottom:0.6rem;">
+            <svg class="icon icon-xl" style="fill:#c9a0ff; filter:drop-shadow(0 4px 14px rgba(139,92,246,0.55));">
+                <use href="#ic-eagle"/>
+            </svg>
+        </div>
+
+        <h2>Вход в аккаунт</h2>
+        <div class="login-subtitle">Введите данные для доступа</div>
+
+        <div class="input-group">
+            <label>Логин</label>
+            <input type="text" id="loginInput" placeholder="Введите логин" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label>Пароль</label>
+            <input type="password" id="passwordInput" placeholder="Введите пароль" autocomplete="off">
+        </div>
+        
+        <!-- ГОСТЕВОЙ РЕЖИМ - вставь перед login-btn -->
+<button class="guest-btn" id="guestBtn">
+    <svg class="icon" style="fill:#aaa; width:18px; height:18px;"><use href="#ic-info"/></svg>
+    Гостевой режим
+</button>
+<div style="text-align:center; font-size:0.6rem; color:rgba(255,255,255,0.25); margin:4px 0 8px;">Просмотр без пароля</div>
+
+        <button class="login-btn" id="loginBtn">Войти</button>
+
+        <div id="errorMsg" class="error-message">
+            <svg class="icon" style="fill:#fca5a5; vertical-align:middle; margin-right:4px;">
+                <use href="#ic-warn"/>
+            </svg>
+            Неверный логин или пароль
+        </div>
+    </div>
+</div>
+
+<div id="welcomeContainer" class="welcome-container">
+    <div class="welcome-card">
+
+        <div class="welcome-eagle">
+            <svg class="icon icon-xl welcome-eagle-icon" style="fill:#d8b4fe;">
+                <use href="#ic-eagle"/>
+            </svg>
+        </div>
+
+        <h1>
+            <svg class="icon" style="fill:#ffd6aa; vertical-align:middle; margin-right:6px; width:28px; height:28px;">
+                <use href="#ic-wave"/>
+            </svg>
+            Добро пожаловать!
+        </h1>
+
+        <p>Рады видеть вас снова в<br><strong>UnionTeam · Ивент-отдел</strong></p>
+
+        <button class="continue-btn" id="continueBtn">
+            Продолжить
+            <svg class="icon" style="fill:white; vertical-align:middle; margin-left:6px;">
+                <use href="#ic-arrow-right"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<div class="dashboard" id="mainDashboard" style="display: none;">
+
+<div class="top-bar">
+    <div class="logo-area"></div>
+    <div class="user-actions">
+        <!-- КНОПКА УВЕДОМЛЕНИЙ С ВЫПАДАЮЩИМ МЕНЮ -->
+        <div class="notification-btn-wrapper">
+            <button class="notification-top-btn" id="notificationTopBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.93 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                </svg>
+                <span class="notification-badge" id="notificationBadge">0</span>
+            </button>
+            <div class="notification-dropdown" id="notificationDropdown">
+                <div class="notification-header">
+                    <span>📢 Уведомления</span>
+                    <button id="clearNotificationsBtn">Очистить все</button>
+                </div>
+                <div class="notification-list" id="notificationList">
+                    <div class="notification-empty">Нет уведомлений</div>
+                </div>
+            </div>
+        </div>
+        <!-- КНОПКА ВЫХОДА -->
+        <button class="logout-btn" id="logoutBtn">
+            <svg class="icon" style="fill:white;">
+                <use href="#ic-logout"/>
+            </svg>
+            Выйти
+        </button>
+    </div>
+</div>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://i.imgur.com/IAIJe65.png" alt="UnionTeam" class="sidebar-logo">
+            <div class="sidebar-title">
+                UnionTeam · Ивент отдел
+                <span class="sidebar-subtitle">Обычный Дарк РП 3</span>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title">ГЛАВНОЕ</div>
+            <div class="nav-item active" data-tab="events_table">
+                <svg class="icon"><use href="#ic-table"/></svg>
+                <span>Таблица ивентов</span>
+            </div>
+            <div class="nav-item" data-tab="team_table">
+                <svg class="icon"><use href="#ic-team"/></svg>
+                <span>Команда ивента</span>
+            </div>
+            <div class="nav-item" data-tab="add_event">
+                <svg class="icon"><use href="#ic-plus"/></svg>
+                <span>Добавить ивент</span>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title">ИНФОРМАЦИЯ</div>
+            <div class="nav-item" data-tab="event_guidee">
+                <svg class="icon"><use href="#ic-chart"/></svg>
+                <span>Норма</span>
+            </div>
+
+            <div class="nav-item" data-tab="event_adons">
+                <svg class="icon"><use href="#ic-box"/></svg>
+                <span>Адонны</span>
+            </div>
+            <div class="nav-item" id="salaryBtn">
+                <svg class="icon"><use href="#ic-crown"/></svg>
+                <span>АВТОМАТИЧЕСКОЕ ПОВЫШЕНИЕ</span>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-title">КРЕАТОРЫ</div>
+                <div class="nav-item" id="ticketsEditorBtn" style="display: none;">
+                    <svg class="icon"><use href="#ic-chart"/></svg>
+                    <span>Управление Нормой</span>
+                </div>
+                <!-- НОВАЯ КНОПКА ДЛЯ УПРАВЛЕНИЯ КОМАНДОЙ -->
+                <div class="nav-item" id="manageTeamBtn" style="display: none;">
+                    <svg class="icon"><use href="#ic-team"/></svg>
+                    <span>Управление командой</span>
+                </div>
+                <div class="nav-item" id="importTicketsBtn" style="display: none;">
+                    <svg class="icon"><use href="#ic-chart"/></svg>
+                    <span>Импорт тикетов</span>
+                </div>
+        </div>
+    </div>
+
+   
+
+    <div class="main-layout">
+        <div class="content-area" id="eventDynamicContent"></div>
+    </div>
+
+    <footer>
+        UnionTeam · Ивент-отдел #3 — Полезная информация про ивент отдел 3 сервера Обычного Дарк РП
+        <br>
+        <button id="play67FooterBtn" style="background: linear-gradient(135deg, #353333, #0e0c0c); border: none; border-radius: 12px; padding: 5px 15px; margin-top: 10px; margin: 10px; color: white; font-weight: bold; cursor: pointer;">
+            НЕ НАЖИМАЙ | 67
+        </button>
+    </footer>
+</div>
+
+<div id="infoModal" class="modal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <span id="modalTitle" style="display:flex; align-items:center; gap:8px;">
+                <svg class="icon icon-accent" style="flex-shrink:0;">
+                    <use href="#ic-detail"/>
+                </svg>
+                Детали
+            </span>
+            <button class="close-modal" id="closeModalBtn">
+                <svg class="icon">
+                    <use href="#ic-close"/>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<div id="salaryModal" class="salary-modal-overlay">
+    <div class="salary-modal">
+        <div class="salary-modal-header">
+            <h3>💸 ИДЕТ ПОВЫШЕНИЕ 💸</h3>
+            <button class="salary-close-btn" id="closeSalaryBtn">✕</button>
+        </div>
+        <div class="salary-audio-hint">
+            🔊 ЖЁСТКИЙ ФОНК ИГРАЕТ 🔊
+        </div>
+    </div>
+</div>
+
+<audio id="salaryAudio" loop preload="auto" style="display:none;">
+    <source src="https://videotourl.com/audio/1776607833524-d7d0d19c-bf31-4ae4-ae0a-a94bfc44dc6b.mp3" type="audio/mpeg">
+</audio>
+
+
+<div id="settingsModal" class="settings-modal">
+    <div class="settings-card">
+        <div class="settings-header">
+            <h3>⚙️ НАСТРОЙКИ ПРОФИЛЯ</h3>
+            <button class="settings-close" id="closeSettingsBtn">✕</button>
+        </div>
+        
+        <div class="settings-body">
+            <div class="settings-section">
+                <div class="settings-section-title">МОЯ СТАТИСТИКА</div>
+                <div class="stats-block" id="userStatsBlock">
+                    <div class="stat-row">
+                        <span class="stat-label">Всего ивентов проведено:</span>
+                        <span class="stat-value" id="userEventsCount">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Всего призовых:</span>
+                        <span class="stat-value" id="userPrizesCount">0$</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">В отделе с:</span>
+                        <span class="stat-value" id="userJoinDate">--</span>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="settings-section-title">ЯРКОСТЬ ЭКРАНА</div>
+                <div class="brightness-control">
+                    <span></span>
+                    <input type="range" id="brightnessSlider" min="30" max="150" value="100" step="5">
+                    <span></span>
+                    <span id="brightnessValue" class="brightness-percent">100%</span>
+                </div>
+            </div>
+            
+            <!-- ВЫБОР ФОНА -->
+<div class="settings-section">
+    <div class="settings-section-title">🖼️ ВЫБОР ФОНА</div>
+    <div class="background-grid" id="backgroundGrid">
+        <div class="bg-option" data-bg="1">
+            <img src="https://s.fotora.ru/53ed6c1638eeb0c3.png" alt="Фон 1">
+            <span>Дворец Культуры</span>
+        </div>
+        <div class="bg-option" data-bg="2">
+            <img src="https://s.fotora.ru/428d4435cf52dbd9.png" alt="Фон 2">
+            <span>Мэрия</span>
+        </div>
+        <div class="bg-option" data-bg="3">
+            <img src="https://s.fotora.ru/685ca425d754b424.png" alt="Фон 3">
+            <span>Армейские Варота</span>
+        </div>
+        <div class="bg-option" data-bg="4">
+            <img src="https://s.fotora.ru/a95e1a74f4e1a6d6.png" alt="Фон 4">
+            <span>Полицейские Решотки</span>
+        </div>
+        <div class="bg-option" data-bg="5">
+            <img src="https://s.fotora.ru/96a91f558437979e.png" alt="Фон 5">
+            <span>Озеро</span>
+        </div>
+        <div class="bg-option" data-bg="6">
+            <img src="https://s.fotora.ru/5583442297c8d4c5.png" alt="Фон 6">
+            <span>Гаражи</span>
+        </div>
+        <div class="bg-option" data-bg="7">
+            <img src="https://s.fotora.ru/536ddcc63cff044b.png" alt="Фон 7">
+            <span>Шахта</span>
+        </div>
+        <div class="bg-option" data-bg="8">
+            <img src="https://s.fotora.ru/00a6f25b03700d71.png" alt="Фон 8">
+            <span>Торговый Центр</span>
+        </div>
+        <div class="bg-option" data-bg="9">
+            <img src="https://s.fotora.ru/887ddbf1ff2f6a2c.png" alt="Фон 9">
+            <span>Пухово</span>
+        </div>
+        <div class="bg-option" data-bg="10">
+            <img src="https://s.fotora.ru/dc5ad1b288acf115.png" alt="Фон 10">
+            <span>Заправка Подсолнух</span>
+        </div>
+        <div class="bg-option" data-bg="11">
+            <img src="https://s.fotora.ru/7fc75b13766b24d9.png" alt="Фон 11">
+            <span>Церковь</span>
+        </div>
+        <div class="bg-option" data-bg="12">
+            <img src="https://s.fotora.ru/cad6e89b6485693f.png" alt="Фон 12">
+            <span>Завод в Пухово</span>
+        </div>
+    </div>
+</div>
+
+            <!-- ТЕМЫ -->
+<div class="settings-section">
+    <div class="settings-section-title">ТЕМА</div>
+    <div style="display:flex; gap:8px;">
+        <button class="theme-btn active" data-theme="dark" style="flex:1;padding:10px;border-radius:12px;background:#1a1a2e;color:#fff;border:2px solid #888;cursor:pointer;font-size:12px;font-weight:600;">Обычная</button>
+    </div>
+</div>
+
+<!-- ЦВЕТ АКЦЕНТА -->
+<div class="settings-section">
+    <div class="settings-section-title">ЦВЕТ АКЦЕНТА</div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="color-dot active" data-color="#c9a0ff" style="width:32px;height:32px;border-radius:50%;background:#c9a0ff;cursor:pointer;border:3px solid #fff;"></span>
+        <span class="color-dot" data-color="#44ffaa" style="width:32px;height:32px;border-radius:50%;background:#44ffaa;cursor:pointer;border:3px solid transparent;"></span>
+        <span class="color-dot" data-color="#ffaa44" style="width:32px;height:32px;border-radius:50%;background:#ffaa44;cursor:pointer;border:3px solid transparent;"></span>
+        <span class="color-dot" data-color="#44aaff" style="width:32px;height:32px;border-radius:50%;background:#44aaff;cursor:pointer;border:3px solid transparent;"></span>
+        <span class="color-dot" data-color="#ff66aa" style="width:32px;height:32px;border-radius:50%;background:#ff66aa;cursor:pointer;border:3px solid transparent;"></span>
+        <span class="color-dot" data-color="#ffffff" style="width:32px;height:32px;border-radius:50%;background:#ffffff;cursor:pointer;border:3px solid rgba(0,0,0,0.3);"></span>
+        <span class="color-dot" data-color="#1a1a1a" style="width:32px;height:32px;border-radius:50%;background:#1a1a1a;cursor:pointer;border:3px solid rgba(255,255,255,0.3);"></span>
+    </div>
+</div>
+
+<!-- ПРОЗРАЧНОСТЬ -->
+<div class="settings-section">
+    <div class="settings-section-title">ПРОЗРАЧНОСТЬ БЛОКОВ</div>
+    <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:12px;">0%</span>
+        <input type="range" id="opacitySlider" min="60" max="100" value="100" style="flex:1;">
+        <span style="font-size:12px;">100%</span>
+    </div>
+</div>
+            
+        
+        </div>
+        
+        <div class="settings-footer">
+            <button class="settings-save" id="saveSettingsBtn">СОХРАНИТЬ</button>
+        </div>
+    </div>
+</div>
+</div>
+
+           
+<template id="commentTemplate">
+  <div class="comment-item">
+    <img class="comment-avatar" src="" alt="avatar">
+    <div class="comment-content">
+      <div class="comment-header">
+        <div class="comment-author-wrapper">
+          <span class="comment-author"></span>
+          <span class="comment-time"></span>
+        </div>
+        <button class="comment-delete-btn" style="display:none;">🗑️</button>
+      </div>
+      <div class="comment-text"></div>
+    </div>
+  </div>
+</template>
+
+<div id="addMemberModal" class="modal" style="display:none;">
+    <div class="modal-card" style="max-width:500px;">
+        <div class="modal-header">
+            <span>➕ Добавить участника</span>
+            <button class="close-modal" id="closeAddMemberModal">
+                <svg class="icon"><use href="#ic-close"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Никнейм *</label>
+                <input type="text" id="memberName" placeholder="Введите никнейм">
+            </div>
+            <div class="form-group">
+                <label>Роль *</label>
+                <input type="text" id="memberRole" placeholder="Например: Ивентер">
+            </div>
+            <div class="form-group">
+                <label>Discord ID</label>
+                <input type="text" id="memberDiscord" placeholder="Например: 1246076621484724320">
+            </div>
+            <div class="form-group">
+                <label>Статус *</label>
+                <select id="memberStatus">
+                    <option value="Онлайн">🟢 Онлайн</option>
+                    <option value="Заморозка">⏸️ Заморозка</option>
+                    <option value="Отпуск">🏖️ Отпуск</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Дата вступления *</label>
+                <input type="text" id="memberJoinDate" placeholder="Например: 20.04.26">
+            </div>
+            <div class="form-group">
+                <label>Ранг *</label>
+                <input type="text" id="memberRating" placeholder="Например: Администратор">
+            </div>
+            <div class="form-group">
+                <label>Категория *</label>
+                <select id="memberCategory">
+                    <option value="Младший состав">🌟 Младший состав</option>
+                    <option value="Старший состав">👑 Старший состав</option>
+                </select>
+            </div>
+            <button class="submit-btn" id="saveMemberBtn">Сохранить</button>
+        </div>
+    </div>
+</div>  
+
+<!-- Загрузка данных -->
+<div id="globalLoadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.925); backdrop-filter:blur(12px); z-index:99999; align-items:center; justify-content:center;">
+    <div style="text-align:center; max-width:350px; padding:30px;">
+        <!-- Орёл думающий -->
+        <div style="position:relative; width:180px; height:180px; margin:0 auto 30px;">
+            <img src="https://i.imgur.com/gykWRac.png" alt="Орёл" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 20px rgb(26, 23, 23));">
+            
+        </div>
+        
+        <!-- Текст загрузки -->
+        <div style="color:#fff; font-size:1.3rem; font-weight:600; margin-bottom:8px;">Загрузка данных...</div>
+        <div style="color:#888; font-size:0.9rem;">Пожалуйста, подождите</div>
+        
+        <!-- Прогресс-бар -->
+        <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:2px; margin-top:25px; overflow:hidden;">
+            <div style="width:0%; height:100%; background:linear-gradient(90deg, #4b4b4e, #6b6380); border-radius:2px; animation:progressPulse 2s ease-in-out infinite;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно редактирования ивента -->
+<div id="editEventModal" class="modal" style="display:none;">
+    <div class="modal-card" style="max-width:600px;">
+        <div class="modal-header">
+            <span>✏️</span>
+            <button class="close-modal" id="closeEditEventModal">
+                <svg class="icon"><use href="#ic-close"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="editEventId">
+            <div class="form-group">
+                <label>Название ивента</label>
+                <input type="text" id="editEventName" placeholder="Название">
+            </div>
+            <div class="form-group">
+                <label>Описание</label>
+                <textarea id="editEventDescription" rows="3" placeholder="Описание"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Дата</label>
+                <input type="text" id="editEventDate" placeholder="Дата">
+            </div>
+            <div class="form-group">
+                <label>Призовые</label>
+                <input type="text" id="editEventRating" placeholder="Призовые">
+            </div>
+            <div class="form-group">
+                <label>Участников</label>
+                <input type="number" id="editEventMembers" placeholder="Количество">
+            </div>
+            <div class="form-group">
+                <label>Помощники</label>
+                <input type="text" id="editEventHelpers" placeholder="Помощники">
+            </div>
+            <button class="submit-btn" id="saveEditEventBtn">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Модальное окно добавления участника команды -->
+<div id="addTeamMemberModal" class="modal" style="display:none;">
+    <div class="modal-card" style="max-width: 550px;">
+        <div class="modal-header">
+            <span>👥 Добавить участника команды</span>
+            <button class="close-modal" id="closeTeamMemberModal">
+                <svg class="icon"><use href="#ic-close"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Никнейм *</label>
+                <input type="text" id="teamMemberName" placeholder="Введите никнейм">
+            </div>
+            <div class="form-group">
+                <label>Роль *</label>
+                <input type="text" id="teamMemberRole" placeholder="Например: Ивентер">
+            </div>
+            <div class="form-group">
+                <label>Discord ID *</label>
+                <input type="text" id="teamMemberDiscord" placeholder="Например: 1246076621484724320">
+                <small style="color: var(--text-muted);">ID пользователя Discord (число)</small>
+            </div>
+            <div class="form-group">
+                <label>Steam ID (64)</label>
+                <input type="text" id="teamMemberSteamId" placeholder="Например: 76561199705616791">
+                <small style="color: var(--text-muted);">64-битный Steam ID (необязательно)</small>
+            </div>
+            <div class="form-group">
+                <label>Ссылка на аватарку</label>
+                <input type="text" id="teamMemberAvatar" placeholder="https://...">
+                <small style="color: var(--text-muted);">Прямая ссылка на изображение аватарки</small>
+            </div>
+            <div class="form-group">
+                <label>Дата вступления *</label>
+                <input type="text" id="teamMemberJoinDate" placeholder="Например: 01.05.26">
+            </div>
+            <div class="form-group">
+                <label>Ранг *</label>
+                <input type="text" id="teamMemberRating" placeholder="Например: Администратор">
+            </div>
+            <div class="form-group">
+                <label>Категория *</label>
+                <select id="teamMemberCategory">
+                    <option value="Старший состав">👑 Старший состав</option>
+                    <option value="Младший состав">🌟 Младший состав</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Статус</label>
+                <select id="teamMemberStatus">
+                    <option value="Онлайн">🟢 Онлайн</option>
+                    <option value="Заморозка">⏸️ Заморозка</option>
+                    <option value="Отпуск">🏖️ Отпуск</option>
+                </select>
+            </div>
+            <button class="submit-btn" id="saveTeamMemberBtn">➕ Добавить участника</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно редактирования участника команды -->
+<div id="editTeamMemberModal" class="modal" style="display:none;">
+    <div class="modal-card" style="max-width: 550px;">
+        <div class="modal-header">
+            <span>✏️ Редактировать участника</span>
+            <button class="close-modal" id="closeEditTeamMemberModal">
+                <svg class="icon"><use href="#ic-close"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="editMemberId">
+            <div class="form-group">
+                <label>Никнейм *</label>
+                <input type="text" id="editMemberName" placeholder="Введите никнейм">
+            </div>
+            <div class="form-group">
+                <label>Роль *</label>
+                <input type="text" id="editMemberRole" placeholder="Например: Ивентер">
+            </div>
+            <div class="form-group">
+                <label>Discord ID *</label>
+                <input type="text" id="editMemberDiscord" placeholder="Например: 1246076621484724320">
+            </div>
+            <div class="form-group">
+                <label>Steam ID (64)</label>
+                <input type="text" id="editMemberSteamId" placeholder="Например: 76561199705616791">
+                <small style="color: var(--text-muted);">64-битный Steam ID</small>
+            </div>
+            <div class="form-group">
+                <label>Ссылка на аватарку</label>
+                <input type="text" id="editMemberAvatar" placeholder="https://...">
+            </div>
+            <div class="form-group">
+                <label>Дата вступления *</label>
+                <input type="text" id="editMemberJoinDate" placeholder="Например: 01.05.26">
+            </div>
+            <div class="form-group">
+                <label>Ранг *</label>
+                <input type="text" id="editMemberRating" placeholder="Например: Администратор">
+            </div>
+            <div class="form-group">
+                <label>Категория *</label>
+                <select id="editMemberCategory">
+                    <option value="Старший состав">👑 Старший состав</option>
+                    <option value="Младший состав">🌟 Младший состав</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Статус</label>
+                <select id="editMemberStatus">
+                    <option value="Онлайн">🟢 Онлайн</option>
+                    <option value="Заморозка">⏸️ Заморозка</option>
+                    <option value="Отпуск">🏖️ Отпуск</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="submit-btn" id="saveEditMemberBtn" style="flex: 2;">💾 Сохранить изменения</button>
+                <button class="submit-btn" id="deleteMemberBtn" style="flex: 1; background: linear-gradient(95deg, rgba(200,60,60,0.5), rgba(150,40,40,0.5));">🗑️ Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Панель глобальных уведомлений (ОДИН РАЗ) -->
+<div id="globalNotificationPanel" class="notification-panel-global"></div>
+<div id="notificationPanelTop" class="notification-panel-top"></div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
