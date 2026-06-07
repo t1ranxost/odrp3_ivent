@@ -274,8 +274,8 @@
     <footer>
         UnionTeam · Ивент-отдел #3 — Полезная информация про ивент отдел 3 сервера Обычного Дарк РП
         <br>
-        <button id="play67FooterBtn" style="background: linear-gradient(135deg, #353333, #0e0c0c); border: none; border-radius: 12px; padding: 5px 15px; margin-top: 10px; margin: 10px; color: white; font-weight: bold; cursor: pointer;">
-            НЕ НАЖИМАЙ | 67
+        <button id="play67FooterBtn" style="background: linear-gradient(135deg, rgba(255, 170, 68, 0.4), rgba(255, 150, 30, 0.35)); border: none; border-radius: 12px; padding: 5px 15px; margin-top: 10px; margin: 10px; color: white; font-weight: bold; cursor: pointer;">
+            НЕ НАЖИМАЙ
         </button>
     </footer>
 </div>
@@ -351,68 +351,104 @@
                 </div>
             </div>
             
-            <!-- ВЫБОР ФОНА -->
 <div class="settings-section">
     <div class="settings-section-title">🖼️ ВЫБОР ФОНА</div>
+    
+    <!-- Кнопка загрузки -->
+    <button id="loadAllBgBtn" style="
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, rgba(255,170,68,0.3), rgba(255,140,0,0.2));
+        border: 1px solid rgba(255,170,68,0.4);
+        border-radius: 14px;
+        color: #ffaa44;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+    " onmouseover="this.style.background='linear-gradient(135deg, rgba(255,170,68,0.5), rgba(255,140,0,0.4))'" 
+       onmouseout="this.style.background='linear-gradient(135deg, rgba(255,170,68,0.3), rgba(255,140,0,0.2))'">
+        📥 Загрузить все фоны
+    </button>
+    
     <div class="background-grid" id="backgroundGrid">
-        <div class="bg-option" data-bg="1">
-            <img src="https://s.fotora.ru/53ed6c1638eeb0c3.png" alt="Фон 1">
-            <span>Дворец Культуры</span>
-        </div>
-        <div class="bg-option" data-bg="2">
-            <img src="https://s.fotora.ru/428d4435cf52dbd9.png" alt="Фон 2">
-            <span>Мэрия</span>
-        </div>
-        <div class="bg-option" data-bg="3">
-            <img src="https://s.fotora.ru/685ca425d754b424.png" alt="Фон 3">
-            <span>Армейские Варота</span>
-        </div>
-        <div class="bg-option" data-bg="4">
-            <img src="https://s.fotora.ru/a95e1a74f4e1a6d6.png" alt="Фон 4">
-            <span>Полицейские Решотки</span>
-        </div>
-        <div class="bg-option" data-bg="5">
-            <img src="https://s.fotora.ru/96a91f558437979e.png" alt="Фон 5">
-            <span>Озеро</span>
-        </div>
-        <div class="bg-option" data-bg="6">
-            <img src="https://s.fotora.ru/5583442297c8d4c5.png" alt="Фон 6">
-            <span>Гаражи</span>
-        </div>
-        <div class="bg-option" data-bg="7">
-            <img src="https://s.fotora.ru/536ddcc63cff044b.png" alt="Фон 7">
-            <span>Шахта</span>
-        </div>
-        <div class="bg-option" data-bg="8">
-            <img src="https://s.fotora.ru/00a6f25b03700d71.png" alt="Фон 8">
-            <span>Торговый Центр</span>
-        </div>
-        <div class="bg-option" data-bg="9">
-            <img src="https://s.fotora.ru/887ddbf1ff2f6a2c.png" alt="Фон 9">
-            <span>Пухово</span>
-        </div>
-        <div class="bg-option" data-bg="10">
-            <img src="https://s.fotora.ru/dc5ad1b288acf115.png" alt="Фон 10">
-            <span>Заправка Подсолнух</span>
-        </div>
-        <div class="bg-option" data-bg="11">
-            <img src="https://s.fotora.ru/7fc75b13766b24d9.png" alt="Фон 11">
-            <span>Церковь</span>
-        </div>
-        <div class="bg-option" data-bg="12">
-            <img src="https://s.fotora.ru/cad6e89b6485693f.png" alt="Фон 12">
-            <span>Завод в Пухово</span>
+    <div class="bg-option" data-bg="1" data-src="https://s.fotora.ru/53ed6c1638eeb0c3.png">
+        <div class="bg-placeholder">
+            <span>Фон 1</span>
+            <button class="bg-load-btn">Загрузить</button>
         </div>
     </div>
+    <div class="bg-option" data-bg="2" data-src="https://s.fotora.ru/428d4435cf52dbd9.png">
+        <div class="bg-placeholder">
+            <span>Фон 2</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="3" data-src="https://s.fotora.ru/685ca425d754b424.png">
+        <div class="bg-placeholder">
+            <span>Фон 3</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="4" data-src="https://s.fotora.ru/a95e1a74f4e1a6d6.png">
+        <div class="bg-placeholder">
+            <span>Фон 4</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="5" data-src="https://s.fotora.ru/96a91f558437979e.png">
+        <div class="bg-placeholder">
+            <span>Фон 5</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="6" data-src="https://s.fotora.ru/5583442297c8d4c5.png">
+        <div class="bg-placeholder">
+            <span>Фон 6</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="7" data-src="https://s.fotora.ru/536ddcc63cff044b.png">
+        <div class="bg-placeholder">
+            <span>Фон 7</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="8" data-src="https://s.fotora.ru/00a6f25b03700d71.png">
+        <div class="bg-placeholder">
+            <span>Фон 8</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="9" data-src="https://s.fotora.ru/887ddbf1ff2f6a2c.png">
+        <div class="bg-placeholder">
+            <span>Фон 9</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="10" data-src="https://s.fotora.ru/dc5ad1b288acf115.png">
+        <div class="bg-placeholder">
+            <span>Фон 10</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="11" data-src="https://s.fotora.ru/7fc75b13766b24d9.png">
+        <div class="bg-placeholder">
+            <span>Фон 11</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+    <div class="bg-option" data-bg="12" data-src="https://s.fotora.ru/cad6e89b6485693f.png">
+        <div class="bg-placeholder">
+            <span>Фон 12</span>
+            <button class="bg-load-btn">Загрузить</button>
+        </div>
+    </div>
+</div>
 </div>
 
-            <!-- ТЕМЫ -->
-<div class="settings-section">
-    <div class="settings-section-title">ТЕМА</div>
-    <div style="display:flex; gap:8px;">
-        <button class="theme-btn active" data-theme="dark" style="flex:1;padding:10px;border-radius:12px;background:#1a1a2e;color:#fff;border:2px solid #888;cursor:pointer;font-size:12px;font-weight:600;">Обычная</button>
-    </div>
-</div>
 
 <!-- ЦВЕТ АКЦЕНТА -->
 <div class="settings-section">
@@ -441,9 +477,7 @@
         
         </div>
         
-        <div class="settings-footer">
-            <button class="settings-save" id="saveSettingsBtn">СОХРАНИТЬ</button>
-        </div>
+        
     </div>
 </div>
 </div>
@@ -703,6 +737,20 @@
 <!-- Панель глобальных уведомлений (ОДИН РАЗ) -->
 <div id="globalNotificationPanel" class="notification-panel-global"></div>
 <div id="notificationPanelTop" class="notification-panel-top"></div>
+
+<!-- ДЕКОРАТИВНАЯ ПОЛОСА С ИСКРАМИ -->
+<div id="sparkBar" style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 9px;
+    background: linear-gradient(90deg, #ff6600, #ffaa44, #ffcc88, #ffaa44, #ff6600);
+    z-index: 9999;
+    cursor: pointer;
+    transition: height 0.2s;
+    box-shadow: 0 0 20px rgba(255,170,68,0.6), 0 0 40px rgba(255,170,68,0.3);
+"></div>
 
 
 
